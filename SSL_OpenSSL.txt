@@ -1,0 +1,18 @@
+GET cert key and chain from pfx file using openssl
+#######################################
+[pfx-file-name].pfx
+
+########## Private Key ###############
+openssl pkcs12 -in [pfx-file-name].pfx -nocerts -out [encrypted-key-name].key
+
+########## Cert ######################
+openssl pkcs12 -in [pfx-file-name].pfx -clcerts -nokeys -out [cert-name].crt
+
+openssl rsa -in [encrypted-key-name].key -out [key-name].key
+
+openssl rsa -in [encrypted-key-name].key -outform PEM -out [pem-key-name].key
+
+########## Chain #####################
+openssl pkcs12 -in [pfx-file-name].pfx -cacerts -nokeys -chain -out [chain-name].cer
+
+
